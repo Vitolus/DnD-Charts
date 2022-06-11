@@ -1,0 +1,85 @@
+#include "jsonfilepicker.h"
+
+QString JSONFilePicker::selectJSONFileDialog(){
+    QFileDialog dialog;
+    QString fileName;
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setNameFilter("JSON File (*.json)");
+    if (dialog.exec()) fileName = dialog.selectedFiles().at(0);
+    return fileName;
+}
+
+QJsonDocument* JSONFilePicker::getJSONFileData(const QString& path){
+    if(path.isNull()) return new QJsonDocument();
+    QString fileData;
+    QFile file;
+    file.setFileName(path);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    fileData = file.readAll();
+    file.close();
+    //Controllo validità documento
+    QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(fileData.toLocal8Bit()));
+    QJsonObject dataObj = doc->object();
+    if(!dataObj.contains("records") || !dataObj.contains("razze")
+            || !dataObj.contains("classi")|| !dataObj.contains("allineamenti")){
+        delete doc;
+        return new QJsonDocument();
+    }
+    return doc;
+}
+
+QStringList* JSONFilePicker::getRazzeList(QJsonDocument* data){
+    QStringList* dataList = new QStringList;
+    QJsonObject dataObj = data->object();
+    QJsonArray dataArray = dataObj["razze"].toArray();
+    for(const QJsonValue& value : dataArray){
+        dataList->append(value.toString());
+    }
+    return dataList;
+}
+QStringList* JSONFilePicker::getClassiList(QJsonDocument* data){
+    QStringList* dataList = new QStringList;
+    QJsonObject dataObj = data->object();
+    QJsonArray dataArray = dataObj["classi"].toArray();
+    for(const QJsonValue& value : dataArray){
+        dataList->append(value.toString());
+    }
+    return dataList;
+}
+QStringList* JSONFilePicker::getAllineamentiList(QJsonDocument* data){
+    QStringList* dataList = new QStringList;
+    QJsonObject dataObj = data->object();
+    QJsonArray dataArray = dataObj["allineamenti"].toArray();
+    for(const QJsonValue& value : dataArray){
+        dataList->append(value.toString());
+    }
+    return dataList;
+}
+
+std::list<Record*> JSONFilePicker::getRecords(QJsonDocument* data){
+    std::list<Record*> ret;
+    QJsonObject dataObj = data->object();
+    QJsonArray records = dataObj["records"].toArray();
+    for(const QJsonValue& record : records){
+        Record* r = new Record(
+                record.toObject().value("razza").toString(),
+                record.toObject().value("classe").toString(),
+                record.toObject().value("allineamento").toString(),
+                record.toObject().value("livello").toInt());
+        ret.push_back(r);
+    }
+    return ret;
+}
+
+bool JSONFilePicker::saveAdminModel(const QJsonDocument& doc, const QString& path){
+    if(path.isNull() || path.isEmpty()) return false;
+    QFile file(path);
+    if(file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate)){
+        file.write(doc.toJson());
+        file.close();
+        return true;
+    }
+    return false;
+}
+
+
