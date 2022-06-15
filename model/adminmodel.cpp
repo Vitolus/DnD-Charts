@@ -57,7 +57,7 @@ const QString &AdminModel::getAllineamento(unsigned int row) const{
     return allineamentiList->at(row);
 }
 
-const QJsonDocument &AdminModel::toQJSonDocument() const{
+const QJsonDocument &AdminModel::toQJsonDocument() const{
     QJsonDocument* modelJson = new QJsonDocument();
     QJsonObject mainObj;
     QJsonArray recordsArray;

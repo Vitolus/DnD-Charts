@@ -14,6 +14,7 @@ SOURCES += \
     mainwindow.cpp \
     model/adminmodel.cpp \
     model/model.cpp \
+    model/piechartmodel.cpp \
     model/record.cpp
 
 HEADERS += \
@@ -21,6 +22,7 @@ HEADERS += \
     mainwindow.h \
     model/adminmodel.h \
     model/model.h \
+    model/piechartmodel.h \
     model/record.h
 
 # Default rules for deployment.

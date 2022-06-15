@@ -124,7 +124,7 @@ public:
      * viene tralasciata l'informazione della path
      * @return JSON document con i dati del modello
      */
-    const QJsonDocument& toQJSonDocument() const;
+    const QJsonDocument& toQJsonDocument() const;
 
     /**
      * @brief setFilePath Metodo che imposta la path del modello
