@@ -1,5 +1,5 @@
-#ifndef JSONFILEPICKER_H
-#define JSONFILEPICKER_H
+#ifndef JsonFILEPICKER_H
+#define JsonFILEPICKER_H
 
 #include <QFile>
 #include <QFileDialog>
@@ -7,55 +7,64 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMessageBox>
-
 #include "model/record.h"
 #include "model/adminmodel.h"
 
-class JSONFilePicker{
+class JsonFilePicker{
 public:
     /**
      * Eliminazione dei costruttori di default per impedire creazione istanze della classe
      */
-    explicit JSONFilePicker() = delete;
-    explicit JSONFilePicker(const JSONFilePicker&) = delete;
+    explicit JsonFilePicker()= delete;
+    explicit JsonFilePicker(const JsonFilePicker&)= delete;
 
     /**
-     * @brief selectJSONFileDialog Mostra l'interfaccia grafica per la selezione di un File
+     * @brief selectJsonFileDialog Mostra l'interfaccia grafica per la selezione di un File
      * Si può selezionare solo un file
      * @return Ritorna il percorso del file selezionato
      */
-    static QString selectJSONFileDialog();
+    static QString selectJsonFileDialog();
 
     /**
-     * @brief getJSONFileData Dato il path di un file ne preleva i dati facendone la lettura, ed interpretandoli come
-     * un JSON, la elenaborazione va a buon fine solamente se la path è corretta e se il file è un JSON valido.
+     * @brief getJsonFileData Dato il path di un file ne preleva i dati facendone la lettura, ed interpretandoli come
+     * un Json, la elenaborazione va a buon fine solamente se la path è corretta e se il file è un Json valido.
      * @param path percorso dove si trova il file
      * @return Documento Json contenente i dati del Json,
-     * se documento JSON non valido o path non valida  return QString::isNull() == true
+     * se documento Json non valido o path non valida  return QString::isNull() == true
      */
-    static QJsonDocument* getJSONFileData(const QString&);
+    static QJsonDocument* getJsonFileData(const QString&);
 
     /**
-     * @brief getDataList Metodo che Elabora i Dati JSON e restituisce una lista con i Dati del personaggio
-     * @param data , Dati JSON da elaborare
-     * @return  Lista di QString, ogni elemento è un materiale
+     * @brief getRazzeList Metodo che Elabora i Dati Json e restituisce una lista con le Razze
+     * @param data, Dati Json da elaborare
+     * @return  QStringList, ogni elemento è una razza
      */
     static QStringList* getRazzeList(QJsonDocument*);
+    /**
+     * @brief getClassiList Metodo che Elabora i Dati Json e restituisce una lista con le Classi
+     * @param data, Dati Json da elaborare
+     * @return  QStringList, ogni elemento è una classe
+     */
     static QStringList* getClassiList(QJsonDocument*);
+    /**
+     * @brief getAllineamentiList Metodo che Elabora i Dati Json e restituisce una lista con gli Allineamenti
+     * @param data, Dati Json da elaborare
+     * @return  QStringList, ogni elemento è un allineamento
+     */
     static QStringList* getAllineamentiList(QJsonDocument*);
 
     /**
-     * @brief getRecords Metodo che elebora i dati JSON e resituisce un QJsonArray con i record delle stampe
+     * @brief getRecords Metodo che elebora i dati Json e resituisce un QJsonArray con i record delle stampe
      * @param data, Dati Json da elaborare
      * @return Records in formato QJsonArray
      */
-    static std::list<Record*> getRecords(QJsonDocument*);
+    static QList<Record*> getRecords(QJsonDocument*);
 
     /**
      * @brief saveAdminModel metodo che dato un documento e una path lo salva nella
      * path specificata; il documento è in formato QJsonDocument e la path deve essere valida.
-     * nel caso non sia valida il metodo ritorna FALSE.
-     * Solo nel caso in cui la scrittura vada a buon fine il metodo riorna TRUE.
+     * nel caso non sia valida il metodo ritorna false.
+     * Solo nel caso in cui la scrittura vada a buon fine il metodo riorna true.
      * @param doc
      * @param path
      * @return
@@ -63,4 +72,4 @@ public:
     static bool saveAdminModel(const QJsonDocument&, const QString&);
 };
 
-#endif // JSONFILEPICKER_H
+#endif // JsonFILEPICKER_H

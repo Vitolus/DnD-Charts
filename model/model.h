@@ -6,7 +6,7 @@ class Model
 protected:
     explicit Model();
 public:
-    virtual ~Model() = default;
+    virtual ~Model()= default;
 };
 
 #endif // MODEL_H

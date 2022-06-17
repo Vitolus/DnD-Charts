@@ -33,16 +33,16 @@ AdminModel::~AdminModel(){
 QStringList* AdminModel::getRazzeList() const{ return razzeList;}
 QStringList* AdminModel::getClassiList() const{ return classiList;}
 QStringList* AdminModel::getAllineamentiList() const{ return allineamentiList;}
-std::list<Record*> AdminModel::getRecordList() const{return recordList;}
+QList<Record*> AdminModel::getRecordList() const{return recordList;}
 
 void AdminModel::removeRecord(unsigned int row){
-    std::list<Record*>::iterator it= recordList.begin();
+    QList<Record*>::iterator it= recordList.begin();
     std::advance(it,row);
     recordList.erase(it);
 }
 
 Record* AdminModel::getRecord(unsigned int row) const{
-    std::list<Record*>::const_iterator it= recordList.begin();
+    QList<Record*>::const_iterator it= recordList.begin();
     std::advance(it,row);
     return *it;
 }

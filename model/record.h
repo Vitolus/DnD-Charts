@@ -2,7 +2,6 @@
 #define RECORD_H
 
 #include <QString>
-#include <QDate>
 
 class Record{
     QString razza;
@@ -17,13 +16,17 @@ public:
      * @param a allineamento
      * @param l livello
      */
-    explicit Record(QString r, QString c,QString a, unsigned int l);
+    explicit Record(QString, QString,QString, unsigned int);
+
     const QString &getRazza() const;
     void setRazza(const QString &newRazza);
+
     const QString &getClasse() const;
     void setClasse(const QString &newClasse);
+
     const QString &getAllineamento() const;
     void setAllineamento(const QString &newAllineamento);
+
     unsigned int getLivello() const;
     void setLivello(unsigned int newLivello);
 };

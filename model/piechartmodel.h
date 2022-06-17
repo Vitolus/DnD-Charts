@@ -1,33 +1,38 @@
 #ifndef PIECHARTMODEL_H
 #define PIECHARTMODEL_H
 
+#include <QMap>
 #include "model/model.h"
 #include "model/adminmodel.h"
 
 /**
  * @brief The PieChartModel class Modello che serve a rappresentare i dati da mostrare nella
- * schermata PieChart
+ * schermata PieChart (percentuale utilizzo)
  */
 class PieChartModel : public Model{
 private:
-    std::map<QString,unsigned int> razzeOcc;
-    std::map<QString,unsigned int> classiOcc;
+    QMap<QString,unsigned int> razzeOcc;
+    QMap<QString,unsigned int> classiOcc;
 public:
     /**
      * @brief PieChartModel Costruttore che a partire da un AdminModel viene usato per costruire
      * un PieChartModel, il sudetto modello elabora le info del AdminModel
-     * per creareuna mappa materialOccurences con:
-     * Per ogni materiale il suo numero di utilizzi
+     * per creareuna mappa RazzeOcc con: Per ogni razza il suo numero di utilizzi;
+     * per creareuna mappa ClassiOcc con: Per ogni classe il suo numero di utilizzi
      * @param mAdmin
      */
     explicit PieChartModel(AdminModel*);
 
     /**
-     * @brief getMaterialOccurrences Metodo getter che serve a ritornare
-     * @return materialOccrences mappa con per ogni materiale il numero di utilizzi
+     * @brief getRazzeOccurrences Metodo getter
+     * @return razzeOcc mappa con per ogni razza il numero di utilizzi
      */
-    std::map<QString,unsigned int> getRazzeOccurrences() const;
-    std::map<QString,unsigned int> getClassiOccurrences() const;
+    QMap<QString,unsigned int> getRazzeOccurrences() const;
+    /**
+     * @brief getClassiOccurrences Metodo getter
+     * @return classiOcc mappa con per ogni classe il numero di utilizzi
+     */
+    QMap<QString,unsigned int> getClassiOccurrences() const;
 };
 
 #endif // PIECHARTMODEL_H

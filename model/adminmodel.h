@@ -1,15 +1,15 @@
 #ifndef ADMINMODEL_H
 #define ADMINMODEL_H
 
-#include "model/model.h"
 #include <QJsonDocument>
 #include <QString>
 #include "ctrl/jsonfilepicker.h"
+#include "model/model.h"
 #include "model/record.h"
 
 /**
  * @brief The AdminModel class Classe Che si occupa di rappresentare i dati che servono alla schermata Admin, in particolare
- * Elabora i Dati presi da un file JSON, e li memorizza dandogli un significato.
+ * Elabora i Dati presi da un file Json, e li memorizza dandogli un significato.
  */
 class AdminModel : public Model{
 private:
@@ -17,7 +17,7 @@ private:
     QStringList* razzeList;
     QStringList* classiList;
     QStringList* allineamentiList;
-    std::list<Record*> recordList;
+    QList<Record*> recordList;
 public:
     /**
      * @brief AdminModel Costruttore che viene usato per creare un modello a partire da un Documento Json
@@ -52,7 +52,7 @@ public:
      * @brief getRecordList metodo getter
      * @return lista di Record std::list
      */
-    std::list<Record*> getRecordList() const;
+    QList<Record*> getRecordList() const;
 
     /**
      * @brief removeRecord Metodo che dato un intero rimuove dalla lista di Record l'elemento row-esimo

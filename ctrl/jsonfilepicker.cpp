@@ -1,25 +1,25 @@
 #include "jsonfilepicker.h"
 
-QString JSONFilePicker::selectJSONFileDialog(){
+QString JsonFilePicker::selectJsonFileDialog(){
     QFileDialog dialog;
     QString fileName;
     dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setNameFilter("JSON File (*.json)");
-    if (dialog.exec()) fileName = dialog.selectedFiles().at(0);
+    if (dialog.exec()) fileName= dialog.selectedFiles().at(0);
     return fileName;
 }
 
-QJsonDocument* JSONFilePicker::getJSONFileData(const QString& path){
+QJsonDocument* JsonFilePicker::getJsonFileData(const QString& path){
     if(path.isNull()) return new QJsonDocument();
     QString fileData;
     QFile file;
     file.setFileName(path);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
-    fileData = file.readAll();
+    fileData= file.readAll();
     file.close();
     //Controllo validità documento
-    QJsonDocument* doc = new QJsonDocument(QJsonDocument::fromJson(fileData.toLocal8Bit()));
-    QJsonObject dataObj = doc->object();
+    QJsonDocument* doc= new QJsonDocument(QJsonDocument::fromJson(fileData.toLocal8Bit()));
+    QJsonObject dataObj= doc->object();
     if(!dataObj.contains("records") || !dataObj.contains("razze")
             || !dataObj.contains("classi")|| !dataObj.contains("allineamenti")){
         delete doc;
@@ -28,40 +28,40 @@ QJsonDocument* JSONFilePicker::getJSONFileData(const QString& path){
     return doc;
 }
 
-QStringList* JSONFilePicker::getRazzeList(QJsonDocument* data){
-    QStringList* dataList = new QStringList;
-    QJsonObject dataObj = data->object();
-    QJsonArray dataArray = dataObj["razze"].toArray();
+QStringList* JsonFilePicker::getRazzeList(QJsonDocument* data){
+    QStringList* dataList= new QStringList;
+    QJsonObject dataObj= data->object();
+    QJsonArray dataArray= dataObj["razze"].toArray();
     for(const QJsonValue& value : dataArray){
         dataList->append(value.toString());
     }
     return dataList;
 }
-QStringList* JSONFilePicker::getClassiList(QJsonDocument* data){
-    QStringList* dataList = new QStringList;
-    QJsonObject dataObj = data->object();
-    QJsonArray dataArray = dataObj["classi"].toArray();
+QStringList* JsonFilePicker::getClassiList(QJsonDocument* data){
+    QStringList* dataList= new QStringList;
+    QJsonObject dataObj= data->object();
+    QJsonArray dataArray= dataObj["classi"].toArray();
     for(const QJsonValue& value : dataArray){
         dataList->append(value.toString());
     }
     return dataList;
 }
-QStringList* JSONFilePicker::getAllineamentiList(QJsonDocument* data){
-    QStringList* dataList = new QStringList;
-    QJsonObject dataObj = data->object();
-    QJsonArray dataArray = dataObj["allineamenti"].toArray();
+QStringList* JsonFilePicker::getAllineamentiList(QJsonDocument* data){
+    QStringList* dataList= new QStringList;
+    QJsonObject dataObj= data->object();
+    QJsonArray dataArray= dataObj["allineamenti"].toArray();
     for(const QJsonValue& value : dataArray){
         dataList->append(value.toString());
     }
     return dataList;
 }
 
-std::list<Record*> JSONFilePicker::getRecords(QJsonDocument* data){
-    std::list<Record*> ret;
-    QJsonObject dataObj = data->object();
-    QJsonArray records = dataObj["records"].toArray();
+QList<Record*> JsonFilePicker::getRecords(QJsonDocument* data){
+    QList<Record*> ret;
+    QJsonObject dataObj= data->object();
+    QJsonArray records= dataObj["records"].toArray();
     for(const QJsonValue& record : records){
-        Record* r = new Record(
+        Record* r= new Record(
                 record.toObject().value("razza").toString(),
                 record.toObject().value("classe").toString(),
                 record.toObject().value("allineamento").toString(),
@@ -71,7 +71,7 @@ std::list<Record*> JSONFilePicker::getRecords(QJsonDocument* data){
     return ret;
 }
 
-bool JSONFilePicker::saveAdminModel(const QJsonDocument& doc, const QString& path){
+bool JsonFilePicker::saveAdminModel(const QJsonDocument& doc, const QString& path){
     if(path.isNull() || path.isEmpty()) return false;
     QFile file(path);
     if(file.open(QFile::WriteOnly | QFile::Text | QFile::Truncate)){

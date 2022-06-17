@@ -13,6 +13,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model/adminmodel.cpp \
+    model/barchartmodel.cpp \
     model/model.cpp \
     model/piechartmodel.cpp \
     model/record.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     ctrl/jsonfilepicker.h \
     mainwindow.h \
     model/adminmodel.h \
+    model/barchartmodel.h \
     model/model.h \
     model/piechartmodel.h \
     model/record.h
