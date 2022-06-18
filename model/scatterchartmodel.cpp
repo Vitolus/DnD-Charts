@@ -31,4 +31,4 @@ ScatterChartModel::ScatterChartModel(AdminModel* m){
     }
 }
 
-QMap<QString,std::pair<unsigned int, unsigned int>> ScatterChartModel::getAllineamentiMedi() const{return allinementiMedi};
+QMap<QString,std::pair<unsigned int, unsigned int>> ScatterChartModel::getAllineamentiMedi() const{return allinementiMedi;}
