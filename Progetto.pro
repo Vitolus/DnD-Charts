@@ -17,7 +17,8 @@ SOURCES += \
     model/model.cpp \
     model/piechartmodel.cpp \
     model/record.cpp \
-    model/scatterchartmodel.cpp
+    model/scatterchartmodel.cpp \
+    view/view.cpp
 
 HEADERS += \
     ctrl/jsonfilepicker.h \
@@ -27,7 +28,8 @@ HEADERS += \
     model/model.h \
     model/piechartmodel.h \
     model/record.h \
-    model/scatterchartmodel.h
+    model/scatterchartmodel.h \
+    view/view.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
