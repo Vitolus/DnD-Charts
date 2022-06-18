@@ -16,7 +16,7 @@ private:
     QString* filepath;
     QStringList* razzeList;
     QStringList* classiList;
-    QStringList* allineamentiList;
+    static QStringList const* allineamentiList;
     QList<Record*> recordList;
 public:
     /**
@@ -40,13 +40,22 @@ public:
       * di distruggere i campi in modo profondo
       */
     ~AdminModel() override;
+
     /**
      * @brief getRazzeList metodo getter
      * @return lista delle razze QStringList
      */
     QStringList* getRazzeList() const;
+    /**
+     * @brief getClassiList metodo getter
+     * @return lista delle classi QStringList
+     */
     QStringList* getClassiList() const;
-    QStringList* getAllineamentiList() const;
+    /**
+     * @brief getAllineamentiList metodo getter
+     * @return lista degli allineamenti QStringList
+     */
+    QStringList const* getAllineamentiList() const;
 
     /**
      * @brief getRecordList metodo getter
@@ -77,8 +86,11 @@ public:
      * @param r razza da agigungere
      */
     void addRazza(const QString&);
+    /**
+     * @brief addClasse Aggiunge alla QStringList classiList una classe Qstring r
+     * @param r classe da agigungere
+     */
     void addClasse(const QString&);
-    void addAllineamento(const QString&);
 
     /**
      * @brief setRazza Metodo che modifica una razza eisstente nella razzeList e lo sostituisce con r
@@ -86,16 +98,23 @@ public:
      * @param r razza con cui sostituire
      */
     void setRazza(unsigned int, const QString&);
+    /**
+     * @brief setClasse Metodo che modifica una classe eisstente nella classiList e lo sostituisce con r
+     * @param row indice della classe da sostituire
+     * @param r classe con cui sostituire
+     */
     void setClasse(unsigned int, const QString&);
-    void setAllineamento(unsigned int, const QString&);
 
     /**
      * @brief removeRazza Rimuove una razza dalla RazzeList alla riga==indice row
      * @param row indice della razza da rimuovere
      */
     void removeRazza(unsigned int);
+    /**
+     * @brief removeClasse Rimuove una classe dalla ClassiList alla riga==indice row
+     * @param row indice della classe da rimuovere
+     */
     void removeClasse(unsigned int);
-    void removeAllineamento(unsigned int);
 
     /**
      * @brief getRecord Metodo getter che restituisce un record specifico dalla record::list
@@ -105,12 +124,22 @@ public:
     Record* getRecord(unsigned int) const;
 
     /**
-     * @brief getRazza Metodo che ritorna una razza specifico dalla RazzeList
-     * @param row riga della razza , indice della razza da ritornare
+     * @brief getRazza Metodo che ritorna una razza specifica dalla classiList
+     * @param row riga della razza, indice della razza da ritornare
      * @return razza da ritornare
      */
     const QString& getRazza(unsigned int) const;
+    /**
+     * @brief getClasse Metodo che ritorna una classe specifica dalla classiList
+     * @param row riga della razza, indice della razza da ritornare
+     * @return classe da ritornare
+     */
     const QString& getClasse(unsigned int) const;
+    /**
+     * @brief getAllineamenti Metodo che ritorna un allineamento specifica dalla allineamentiList
+     * @param row riga dell'allineamento, indice dell'allineamneto da ritornare
+     * @return allineamento da ritornare
+     */
     const QString& getAllineamento(unsigned int) const;
 
     /**

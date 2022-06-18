@@ -1,23 +1,24 @@
 #include "adminmodel.h"
 
+QStringList const* AdminModel::allineamentiList= new QStringList({"legale,buono","legale,neutrale","legale,malvagio",
+                                                           "neutrale,buono","neutrale,neutrale","neutrale,malvagio",
+                                                           "caotico,buono","caotico,neutrale","caotico,malvagio"});
+
 AdminModel::AdminModel(QJsonDocument *data, QString* path){
-    razzeList = JSONFilePicker::getRazzeList(data);
-    classiList = JSONFilePicker::getClassiList(data);
-    allineamentiList = JSONFilePicker::getAllineamentiList(data);
-    recordList = JSONFilePicker::getRecords(data);
+    razzeList = JsonFilePicker::getRazzeList(data);
+    classiList = JsonFilePicker::getClassiList(data);
+    recordList = JsonFilePicker::getRecords(data);
     filepath = path;
 }
 AdminModel::AdminModel(){
     razzeList = new QStringList();
     classiList = new QStringList();
-    allineamentiList = new QStringList();
     filepath = new QString();
 }
 AdminModel::AdminModel(const AdminModel &m){
     filepath = new QString(*m.filepath);
     razzeList = new QStringList(*m.razzeList);
     classiList = new QStringList(*m.classiList);
-    allineamentiList = new QStringList(*m.allineamentiList);
     for(const auto& r : m.recordList)
         recordList.push_back(new Record(*r));
 }
@@ -25,14 +26,13 @@ AdminModel::~AdminModel(){
     delete filepath;
     delete razzeList;
     delete classiList;
-    delete allineamentiList;
     for(auto r : recordList)
         delete r;
 }
 
 QStringList* AdminModel::getRazzeList() const{ return razzeList;}
 QStringList* AdminModel::getClassiList() const{ return classiList;}
-QStringList* AdminModel::getAllineamentiList() const{ return allineamentiList;}
+QStringList const* AdminModel::getAllineamentiList() const{ return allineamentiList;}
 QList<Record*> AdminModel::getRecordList() const{return recordList;}
 
 void AdminModel::removeRecord(unsigned int row){
@@ -71,7 +71,6 @@ const QJsonDocument &AdminModel::toQJsonDocument() const{
     }
     mainObj.insert(QString::fromStdString("razze"),QJsonArray::fromStringList(*razzeList));
     mainObj.insert(QString::fromStdString("classi"),QJsonArray::fromStringList(*classiList));
-    mainObj.insert(QString::fromStdString("allineamenti"),QJsonArray::fromStringList(*allineamentiList));
     mainObj.insert(QString::fromStdString("records"),recordsArray);
     modelJson->setObject(mainObj);
 
@@ -86,14 +85,11 @@ unsigned int AdminModel::getRecordListSize() const{return recordList.size();}
 
 void AdminModel::addRazza(const QString &r){razzeList->push_back(r);}
 void AdminModel::addClasse(const QString &c){classiList->push_back(c);}
-void AdminModel::addAllineamento(const QString &a){allineamentiList->push_back(a);}
 
 void AdminModel::setRazza(unsigned int row, const QString &r){razzeList->replace(row,r);}
 void AdminModel::setClasse(unsigned int row, const QString &c){classiList->replace(row,c);}
-void AdminModel::setAllineamento(unsigned int row, const QString &a){allineamentiList->replace(row,a);}
 
 void AdminModel::removeRazza(unsigned int row){razzeList->removeAt(row);}
 void AdminModel::removeClasse(unsigned int row){classiList->removeAt(row);}
-void AdminModel::removeAllineamento(unsigned int row){allineamentiList->removeAt(row);}
 
 const QString& AdminModel::getFilePath() const{return *filepath;}

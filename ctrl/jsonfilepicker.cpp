@@ -21,7 +21,7 @@ QJsonDocument* JsonFilePicker::getJsonFileData(const QString& path){
     QJsonDocument* doc= new QJsonDocument(QJsonDocument::fromJson(fileData.toLocal8Bit()));
     QJsonObject dataObj= doc->object();
     if(!dataObj.contains("records") || !dataObj.contains("razze")
-            || !dataObj.contains("classi")|| !dataObj.contains("allineamenti")){
+            || !dataObj.contains("classi")){
         delete doc;
         return new QJsonDocument();
     }
@@ -41,15 +41,6 @@ QStringList* JsonFilePicker::getClassiList(QJsonDocument* data){
     QStringList* dataList= new QStringList;
     QJsonObject dataObj= data->object();
     QJsonArray dataArray= dataObj["classi"].toArray();
-    for(const QJsonValue& value : dataArray){
-        dataList->append(value.toString());
-    }
-    return dataList;
-}
-QStringList* JsonFilePicker::getAllineamentiList(QJsonDocument* data){
-    QStringList* dataList= new QStringList;
-    QJsonObject dataObj= data->object();
-    QJsonArray dataArray= dataObj["allineamenti"].toArray();
     for(const QJsonValue& value : dataArray){
         dataList->append(value.toString());
     }

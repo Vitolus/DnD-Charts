@@ -46,12 +46,6 @@ public:
      * @return  QStringList, ogni elemento è una classe
      */
     static QStringList* getClassiList(QJsonDocument*);
-    /**
-     * @brief getAllineamentiList Metodo che Elabora i Dati Json e restituisce una lista con gli Allineamenti
-     * @param data, Dati Json da elaborare
-     * @return  QStringList, ogni elemento è un allineamento
-     */
-    static QStringList* getAllineamentiList(QJsonDocument*);
 
     /**
      * @brief getRecords Metodo che elebora i dati Json e resituisce un QJsonArray con i record delle stampe

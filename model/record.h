@@ -6,6 +6,7 @@
 class Record{
     QString razza;
     QString classe;
+    //enum Allign {};
     QString allineamento;
     unsigned int livello;
 public:
