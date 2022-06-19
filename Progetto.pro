@@ -18,6 +18,7 @@ SOURCES += \
     model/piechartmodel.cpp \
     model/record.cpp \
     model/scatterchartmodel.cpp \
+    view/adminview.cpp \
     view/view.cpp
 
 HEADERS += \
@@ -29,6 +30,7 @@ HEADERS += \
     model/piechartmodel.h \
     model/record.h \
     model/scatterchartmodel.h \
+    view/adminview.h \
     view/view.h
 
 # Default rules for deployment.
