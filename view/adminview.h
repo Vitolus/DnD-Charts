@@ -43,16 +43,15 @@ private:
 
     /**
      * @brief connectViewSignals Metodo virtuale
-     * Questo Metodo serve a connettere i SIGNAL degli elementi grafici della AdminView ai SIGNAL della
-     * AdminView i quali dovranno comunicare con il Controller AdminCtrl
+     * Questo Metodo serve a connettere i SIGNAL degli elementi grafici della AdminView,
+     * i quali dovranno comunicare con il Controller AdminCtrl
      */
     void connectViewSignals() const override;
 
 protected:
     /**
      * @brief closeEvent Overriding del metodo closeEvent implementato da QWidget
-     * Tramite questo Overriding si cerca di modificare l'evento di chiusura della window con la X.
-     * In particolare questo metodo chiede una conferma al utente prima di chiudere.
+     * Chiede una conferma al utente prima di chiudere.
      * Viene poi emesso un segnale al controller per avvisarlo della chiusura della finestra.
      * @param event Evento di chiusura della scermata window
      */

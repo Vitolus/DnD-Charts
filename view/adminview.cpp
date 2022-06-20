@@ -331,7 +331,7 @@ void AdminView::removeItemClassiTable(uint row){
 }
 
 void AdminView::setViewTitle(const QString &title){
-    setWindowTitle("Progetto "+title);
+    setWindowTitle(title);
 }
 
 void AdminView::connectViewSignals() const{

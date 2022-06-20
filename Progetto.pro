@@ -1,8 +1,14 @@
-QT       += core gui
+QT += core charts gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+
+# The following define makes your compiler emit warnings if you use
+# any feature of Qt which has been marked as deprecated (the exact warnings
+# depend on your compiler). Please consult the documentation of the
+# deprecated API in order to know how to port your code away from it.
+DEFINES += QT_DEPRECATED_WARNINGS
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -19,6 +25,8 @@ SOURCES += \
     model/record.cpp \
     model/scatterchartmodel.cpp \
     view/adminview.cpp \
+    view/barchartview.cpp \
+    view/homeview.cpp \
     view/view.cpp
 
 HEADERS += \
@@ -31,6 +39,8 @@ HEADERS += \
     model/record.h \
     model/scatterchartmodel.h \
     view/adminview.h \
+    view/barchartview.h \
+    view/homeview.h \
     view/view.h
 
 # Default rules for deployment.
