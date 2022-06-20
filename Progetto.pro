@@ -27,6 +27,8 @@ SOURCES += \
     view/adminview.cpp \
     view/barchartview.cpp \
     view/homeview.cpp \
+    view/piechartoview.cpp \
+    view/piechartview.cpp \
     view/view.cpp
 
 HEADERS += \
@@ -41,6 +43,8 @@ HEADERS += \
     view/adminview.h \
     view/barchartview.h \
     view/homeview.h \
+    view/piechartoview.h \
+    view/piechartview.h \
     view/view.h
 
 # Default rules for deployment.
