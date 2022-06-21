@@ -16,7 +16,7 @@ private:
     QString* filepath;
     QStringList* razzeList;
     QStringList* classiList;
-    static QStringList const* allineamentiList;
+    static const QStringList * allineamentiList;
     QList<Record*> recordList;
 public:
     /**
@@ -67,7 +67,7 @@ public:
      * @brief removeRecord Metodo che dato un intero rimuove dalla lista di Record l'elemento row-esimo
      * @param row indice dell'elemento da rimuovere
      */
-    void removeRecord(unsigned int);
+    void removeRecord(uint);
 
     /**
      * @brief addRecord Metodo che dato un ptr Record lo aggiunge alla lista di Record*
@@ -97,50 +97,50 @@ public:
      * @param row indice della razza da sostituire
      * @param r razza con cui sostituire
      */
-    void setRazza(unsigned int, const QString&);
+    void setRazza(uint, const QString&);
     /**
      * @brief setClasse Metodo che modifica una classe eisstente nella classiList e lo sostituisce con r
      * @param row indice della classe da sostituire
      * @param r classe con cui sostituire
      */
-    void setClasse(unsigned int, const QString&);
+    void setClasse(uint, const QString&);
 
     /**
      * @brief removeRazza Rimuove una razza dalla RazzeList alla riga==indice row
      * @param row indice della razza da rimuovere
      */
-    void removeRazza(unsigned int);
+    void removeRazza(uint);
     /**
      * @brief removeClasse Rimuove una classe dalla ClassiList alla riga==indice row
      * @param row indice della classe da rimuovere
      */
-    void removeClasse(unsigned int);
+    void removeClasse(uint);
 
     /**
      * @brief getRecord Metodo getter che restituisce un record specifico dalla record::list
      * @param row indice del Record dalla std::list da restituire
      * @return record da restituire
      */
-    Record* getRecord(unsigned int) const;
+    Record* getRecord(uint) const;
 
     /**
      * @brief getRazza Metodo che ritorna una razza specifica dalla classiList
      * @param row riga della razza, indice della razza da ritornare
      * @return razza da ritornare
      */
-    const QString& getRazza(unsigned int) const;
+    const QString& getRazza(uint) const;
     /**
      * @brief getClasse Metodo che ritorna una classe specifica dalla classiList
      * @param row riga della razza, indice della razza da ritornare
      * @return classe da ritornare
      */
-    const QString& getClasse(unsigned int) const;
+    const QString& getClasse(uint) const;
     /**
      * @brief getAllineamenti Metodo che ritorna un allineamento specifica dalla allineamentiList
      * @param row riga dell'allineamento, indice dell'allineamneto da ritornare
      * @return allineamento da ritornare
      */
-    const QString& getAllineamento(unsigned int) const;
+    const QString& getAllineamento(uint) const;
 
     /**
      * @brief getFilePath Ritorna la path del file, contente il suo percorso ed il nome del file

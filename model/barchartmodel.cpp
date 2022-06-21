@@ -2,7 +2,7 @@
 
 BarChartModel::BarChartModel(AdminModel *m){
     for(const QString& classe : *m->getClassiList()){
-        unsigned int occ= 0, tot= 0;
+        uint occ= 0, tot= 0;
         for(Record* r : m->getRecordList()){
             if(r->getClasse() == classe){
                 occ++;
@@ -14,4 +14,4 @@ BarChartModel::BarChartModel(AdminModel *m){
     }
 }
 
-QMap<QString,unsigned int> BarChartModel::getLivelliMedi() const{return livelliMedi;}
+QMap<QString, uint> BarChartModel::getLivelliMedi() const{return livelliMedi;}

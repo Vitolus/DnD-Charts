@@ -8,7 +8,7 @@
 class BarChartModel : public Model{
 private:
     //livello medio per classe
-    QMap<QString,unsigned int> livelliMedi;
+    QMap<QString, uint> livelliMedi;
 public:
     /**
      * @brief BarChartModel Costruttore del BarChart che usa un Admin Model per
@@ -21,7 +21,7 @@ public:
      * @brief getLivelliMedi metodo getter
      * @return mappa che rappresenta per ogni classe il livello medio registrato nei record del modello
      */
-    QMap<QString,unsigned int> getLivelliMedi() const;
+    QMap<QString, uint> getLivelliMedi() const;
 };
 
 #endif // BARCHARTMODEL_H

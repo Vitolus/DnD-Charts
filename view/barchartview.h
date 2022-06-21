@@ -15,14 +15,13 @@ QT_CHARTS_USE_NAMESPACE
 
 class BarChartView : public View{
     Q_OBJECT
-protected:
+private:
     QChart* chart;
     QBarSeries* series;
     QList<QBarSet*> listaSetClassi;
     QScrollBar* chartScroll;
     //Parametro che indica quante classi mostrare alla volta nel grafico
     int maxVisClassi= 7;
-
     /**
      * @brief connectViewSignals Metodo virtuale che serve a collegare
      * i segnali dei singoli Widget ai segnali della View
@@ -39,10 +38,9 @@ public:
 
     /**
      * @brief insertSetClasse Metodo che serve ad inserire un SET di dati
-     * Un set di dati in questo caso rappresenta una barra per ciascun meseA
-     * cioè ciascuna data.
-     * @param materiale materiale titolo del set
-     * @param consumiMesi consumi per ogni meseA del set, per ogni barra
+     * rappresentante una barra per ciascuna classe
+     * @param classe classe titolo del set
+     * @param livello livello medio per ogni classe
      */
     void insertSetClasse(const QString&, uint);
 

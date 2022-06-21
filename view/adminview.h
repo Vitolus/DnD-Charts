@@ -93,7 +93,7 @@ public:
      * Associa al pulsante '+' creato, anche una connessione per Segnale la quale Aggiornerà anche il Model.
      * @param row riga a cui aggiungere la riga di add
      */
-    void createAddRowRecordTable(uint, const QStringList&,const QStringList&,const QStringList&);
+    void createAddRowRecordTable(uint, const QStringList&, const QStringList&, const QStringList&);
     /**
      * @brief createAddRowRazzeTable Metodo che si occupa di creare la riga di inserimento delle razze,
      * in questa riga si potranno inserire i dettagli di una nuova razza

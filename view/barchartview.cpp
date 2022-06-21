@@ -4,7 +4,8 @@ void BarChartView::connectViewSignals() const{}
 
 BarChartView::BarChartView(const QSize& size, View* parent) :
     View(size, parent), chart(new QChart()), series(new QBarSeries()),
-    chartScroll(new QScrollBar(Qt::Horizontal,this)){
+    chartScroll(new QScrollBar(Qt::Horizontal, this)){
+
     chart->setTheme(QChart::ChartThemeDark);
     chart->setAnimationOptions(QChart::SeriesAnimations);
     chart->setAnimationDuration(1500);
@@ -23,9 +24,9 @@ BarChartView::BarChartView(const QSize& size, View* parent) :
     connectViewSignals();
 }
 
-void BarChartView::insertSetClasse(const QString &classe, uint livelloMedio){
+void BarChartView::insertSetClasse(const QString &classe, uint livello){
     QBarSet* set= new QBarSet(classe);
-            *set << livelloMedio;
+            *set << livello;
         listaSetClassi.push_back(set);
 }
 

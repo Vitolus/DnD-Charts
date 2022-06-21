@@ -6,28 +6,26 @@ AdminView::AdminView(const QSize& s,View* parent) :
     // Grid layout with 3 buttons
     mainLayout->setSpacing(10);
     mainLayout->setMargin(10);
-    newB= new QPushButton("New",this);
-    mainLayout->addWidget(newB,0,0,1,1,Qt::AlignJustify);
-    saveB= new QPushButton("Save",this);
-    mainLayout->addWidget(saveB,0,1,1,1,Qt::AlignJustify);
-    saveAsB= new QPushButton("Save As",this);
-    mainLayout->addWidget(saveAsB,0,2,1,1,Qt::AlignJustify);
-    homeB= new QPushButton("Home",this);
-    mainLayout->addWidget(homeB,0,4,1,1,Qt::AlignRight);
+    newB= new QPushButton("New", this);
+    mainLayout->addWidget(newB, 0, 0, 1, 1, Qt::AlignJustify);
+    saveB= new QPushButton("Save", this);
+    mainLayout->addWidget(saveB, 0, 1, 1, 1, Qt::AlignJustify);
+    saveAsB= new QPushButton("Save As", this);
+    mainLayout->addWidget(saveAsB, 0, 2, 1, 1, Qt::AlignJustify);
+    homeB= new QPushButton("Home", this);
+    mainLayout->addWidget(homeB,0, 4, 1, 1, Qt::AlignRight);
 
     //Pulsanti Grafici
-    pieChartRB= new QPushButton("Razze scelte %",this);
-    mainLayout->addWidget(pieChartRB,2,0,1,1,Qt::AlignCenter);
-    pieChartCB= new QPushButton("Classi scelte %",this);
-    mainLayout->addWidget(pieChartCB,2,1,1,1,Qt::AlignCenter);
-    scatterChartB = new QPushButton("Allineamento medio classi",this);
-    mainLayout->addWidget(scatterChartB,2,2,1,1,Qt::AlignCenter);
-    barChartB= new QPushButton("Livello medio classi",this);
-    mainLayout->addWidget(barChartB,2,3,1,1,Qt::AlignCenter);
+    pieChartRB= new QPushButton("Razze scelte %", this);
+    mainLayout->addWidget(pieChartRB, 2, 0, 1, 1, Qt::AlignCenter);
+    pieChartCB= new QPushButton("Classi scelte %", this);
+    mainLayout->addWidget(pieChartCB, 2, 1, 1, 1, Qt::AlignCenter);
+    scatterChartB = new QPushButton("Allineamento classi", this);
+    mainLayout->addWidget(scatterChartB, 2, 2, 1, 1, Qt::AlignCenter);
+    barChartB= new QPushButton("Livello classi", this);
+    mainLayout->addWidget(barChartB, 2, 3, 1, 1, Qt::AlignCenter);
 
-    //implementazione
     setLayout(mainLayout);
-    //Connessione dei SIGNAL dei Widget al Signal della AdminView
     connectViewSignals();
 }
 
@@ -39,8 +37,8 @@ void AdminView::createRecordTable(const QStringList& headers) const{
     recordTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     recordTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     recordTable->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
-    recordTable->setColumnWidth(4,25);
-    mainLayout->addWidget(recordTable,1,0,1,3);
+    recordTable->setColumnWidth(4, 25);
+    mainLayout->addWidget(recordTable, 1, 0, 1, 3);
 }
 void AdminView::createRazzeTable(const QStringList& headers) const{
     //Razze Table
@@ -72,13 +70,13 @@ void AdminView::createAddRowRecordTable(uint row, const QStringList& razzeList,
 
     QComboBox* razzeW= new QComboBox(this);
     razzeW->addItems(razzeList);
-    recordTable->setCellWidget(row,0,razzeW);
+    recordTable->setCellWidget(row, 0, razzeW);
     QComboBox* classiW= new QComboBox(this);
     classiW->addItems(classiList);
-    recordTable->setCellWidget(row,1,classiW);
+    recordTable->setCellWidget(row, 1, classiW);
     QComboBox* allineamentiW= new QComboBox(this);
     allineamentiW->addItems(allineamentiList);
-    recordTable->setCellWidget(row,2,allineamentiW);
+    recordTable->setCellWidget(row, 2, allineamentiW);
 
     //Aggiornamento della lista di razze
     connect(this, &AdminView::razzeTableAddedChecked, razzeW, [razzeW](const QString& m){
@@ -243,7 +241,7 @@ void AdminView::addItemRecordTable(uint row, const Record& r, const QStringList&
     });
 
     //Delete Button Widget
-    QPushButton* deleteW= new QPushButton("-",this);
+    QPushButton* deleteW= new QPushButton("-", this);
     recordTable->setCellWidget(row, 4, deleteW);//Widget
 
     //Connessione al pulsante delete per eliminare la riga e aggiornare il modello di dati con l'eliminazione
@@ -281,7 +279,7 @@ void AdminView::addItemRazzeTable(uint row ,const QString& m){
     });
     emit razzeTableAddedChecked(m);
 }
-void AdminView::addItemClassiTable(uint row,const QString& m){
+void AdminView::addItemClassiTable(uint row, const QString& m){
     //Creo La ADD Row più in basso
     createAddRowClassiTable(row+1);
 
@@ -330,7 +328,7 @@ void AdminView::removeItemClassiTable(uint row){
     emit classiTableRemovedChecked(row);
 }
 
-void AdminView::setViewTitle(const QString &title){
+void AdminView::setViewTitle(const QString& title){
     setWindowTitle(title);
 }
 

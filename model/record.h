@@ -6,7 +6,6 @@
 class Record{
     QString razza;
     QString classe;
-    //enum Allign {};
     QString allineamento;
     unsigned int livello;
 public:
@@ -17,7 +16,7 @@ public:
      * @param a allineamento
      * @param l livello
      */
-    explicit Record(QString, QString,QString, unsigned int);
+    explicit Record(QString, QString, QString, uint);
 
     const QString &getRazza() const;
     void setRazza(const QString &newRazza);
@@ -28,7 +27,7 @@ public:
     const QString &getAllineamento() const;
     void setAllineamento(const QString &newAllineamento);
 
-    unsigned int getLivello() const;
-    void setLivello(unsigned int newLivello);
+    uint getLivello() const;
+    void setLivello(uint newLivello);
 };
 #endif // RECORD_H

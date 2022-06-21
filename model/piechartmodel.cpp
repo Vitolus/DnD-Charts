@@ -1,6 +1,6 @@
 #include "piechartmodel.h"
 
-PieChartModel::PieChartModel(AdminModel *m){
+PieChartModel::PieChartModel(AdminModel* m){
     for(const QString& razza : *m->getRazzeList()){
         uint occ= 0;
         for(Record* r : m->getRecordList()){
@@ -18,5 +18,5 @@ PieChartModel::PieChartModel(AdminModel *m){
     }
 }
 
-QMap<QString, unsigned int> PieChartModel::getRazzeOccurrences() const{return razzeOcc;}
-QMap<QString, unsigned int> PieChartModel::getClassiOccurrences() const{return classiOcc;}
+QMap<QString, uint> PieChartModel::getRazzeOccurrences() const{return razzeOcc;}
+QMap<QString, uint> PieChartModel::getClassiOccurrences() const{return classiOcc;}

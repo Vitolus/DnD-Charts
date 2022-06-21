@@ -18,16 +18,14 @@ class PieChartView : public View{
 protected:
     QPieSeries* series;
     QChart* chart;
-
-private:
     /**
      * @brief connectViewSignals Metodo virtuale che serve a collegare i segnali dei singoli
      * Widget ai segnali della View
      */
-    void connectViewSignals() const override{}
+    void connectViewSignals() const override;
 
 public:
-    explicit PieChartView(const QSize& = QSize(800,500), View* = nullptr);
+    explicit PieChartView(const QSize& = QSize(800, 500), View* = nullptr);
 
     /**
      * @brief insertSlice Metodo che serve ad inserire

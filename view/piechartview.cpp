@@ -1,5 +1,7 @@
 #include "piechartview.h"
 
+void PieChartView::connectViewSignals() const{}
+
 PieChartView::PieChartView(const QSize& size, View *parent) :
      View(size, parent), series(new QPieSeries()), chart(new QChart()){
     QHBoxLayout* mainLayout = new QHBoxLayout;
@@ -15,6 +17,7 @@ PieChartView::PieChartView(const QSize& size, View *parent) :
     setLayout(mainLayout);
     setMinimumSize(800, 500);
     resize(size);
+    connectViewSignals();
 }
 
 void PieChartView::insertSlice(const QString& slice, uint occorrenze){

@@ -8,7 +8,7 @@ void View::closeEvent(QCloseEvent* event){
     emit viewClosed();
 }
 
-View::View(const QSize& s,View* parent) : QWidget(parent,Qt::Window){
+View::View(const QSize& s, View* parent) : QWidget(parent, Qt::Window){
     //Resizing della windows
     if(!s.isEmpty() && !s.isNull()) setWindowSize(s);
 }
@@ -29,7 +29,7 @@ void View::showWarningDialog(const QString& title, const QString& mesInfo){
 
 void View::setViewTitle(const QString& title){setWindowTitle(title);}
 
-bool View::showQuestionDialog(unsigned int paramNum, const QString& title,const QString& info){
+bool View::showQuestionDialog(uint paramNum, const QString& title,const QString& info){
     QMessageBox::StandardButton resBtn= QMessageBox::Yes;
     switch (paramNum){
         case 2:

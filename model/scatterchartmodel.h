@@ -8,7 +8,7 @@
 class ScatterChartModel : public Model{
 private:
     //allineamento medio per classe
-    QMap<QString,std::pair<unsigned int, unsigned int>> allinementiMedi;
+    QMap<QString,std::pair<uint, uint>> allinementiMedi;
 public:
     /**
      * @brief ScatterChartModel Costruttore del scatterChart che usa un Admin Model per
@@ -21,7 +21,7 @@ public:
      * @brief getAllineamentiMedi metodo getter
      * @return mappa che rappresenta per ogni classe l'allineamento medio registrato nei record del modello, rappresentato con coordinate tra 1 e -1
      */
-    QMap<QString,std::pair<unsigned int, unsigned int>> getAllineamentiMedi() const;
+    QMap<QString,std::pair<uint, uint>> getAllineamentiMedi() const;
 };
 
 #endif // SCATTERCHARTMODEL_H

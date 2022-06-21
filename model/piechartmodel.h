@@ -11,8 +11,8 @@
  */
 class PieChartModel : public Model{
 private:
-    QMap<QString,unsigned int> razzeOcc;
-    QMap<QString,unsigned int> classiOcc;
+    QMap<QString, uint> razzeOcc;
+    QMap<QString, uint> classiOcc;
 public:
     /**
      * @brief PieChartModel Costruttore che a partire da un AdminModel viene usato per costruire
@@ -27,12 +27,12 @@ public:
      * @brief getRazzeOccurrences Metodo getter
      * @return razzeOcc mappa con per ogni razza il numero di utilizzi
      */
-    QMap<QString,unsigned int> getRazzeOccurrences() const;
+    QMap<QString, uint> getRazzeOccurrences() const;
     /**
      * @brief getClassiOccurrences Metodo getter
      * @return classiOcc mappa con per ogni classe il numero di utilizzi
      */
-    QMap<QString,unsigned int> getClassiOccurrences() const;
+    QMap<QString, uint> getClassiOccurrences() const;
 };
 
 #endif // PIECHARTMODEL_H

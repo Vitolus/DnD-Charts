@@ -7,15 +7,15 @@ HomeView::HomeView(const QSize& s, View* parent) : View(s, parent){
     mainLayout->addLayout(createButtonsLayout());
     mainLayout->addLayout(createDescriptionLayout(tr(
     "Dungeons & Data è un programma di statistica utile\n"
-    "a mostrare alcune preferenze dei giocatori di D&D\n"
+    "a mostrare alcune preferenze dei giocatori di D&D.\n"
     "Si tiene traccia di alcune informazioni di ogni personaggio:\n"
     "- Razza\n"
     "- Classe\n"
     "- Allineamento\n"
     "- Livello\n"
     "\n"
-    "Questo programma, offre dei grafici utili ad esaminare\n"
-    "queste informazioni"),
+    "Questo programma, offre dei grafici utili\n"
+    "ad esaminare queste informazioni\n"),
     ":/dungeons.jpeg"));
     setLayout(mainLayout);
     connectViewSignals();

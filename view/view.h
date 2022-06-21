@@ -37,7 +37,7 @@ public:
      * @brief View Costruttore della view che si occupa di impostare la sua windowSize e ad applicarla
      * @param s Grandezza della finistra, la windowSize
      */
-    explicit View(const QSize& = QSize(),View* = nullptr);
+    explicit View(const QSize& = QSize(), View* = nullptr);
 
     /**
      * @brief ~View Reimplementazione del ristruttore,
@@ -64,7 +64,7 @@ public:
      * @param info Messaggio Informativo da mostrare
      * @return valore booleano == true sse si è premuto su Yes
      */
-    bool showQuestionDialog(unsigned int, const QString& ,const QString&);
+    bool showQuestionDialog(uint, const QString&, const QString&);
 
     /**
      * @brief showWarningDialog Mostra un pop informativo che non interaziona in maniera fondamentale col utente.
