@@ -20,10 +20,4 @@ BarChartModel *BarChartCtrl::getModel() const{
     return static_cast<BarChartModel*>(model);
 }
 
-void BarChartCtrl::showView() const{
-    view->show();
-}
-
-void BarChartCtrl::onViewClosed() const{
-    delete this;
-}
+void BarChartCtrl::onViewClosed() const{delete this;}

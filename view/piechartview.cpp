@@ -20,8 +20,8 @@ PieChartView::PieChartView(const QSize& size, View *parent) :
     connectViewSignals();
 }
 
-void PieChartView::insertSlice(const QString& slice, uint occorrenze){
-    series->append(slice, occorrenze);
+void PieChartView::insertRazza(const QString& razza, uint occorrenze){
+    series->append(razza, occorrenze);
 }
 
 void PieChartView::applyGraphics(){

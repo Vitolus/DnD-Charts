@@ -18,7 +18,7 @@ public:
      * @param slice slice da inserire
      * @param occorrenze occorenze della slice
      */
-    void insertSlice(const QString&, uint) override;
+    void insertRazza(const QString&, uint) override;
 
     /**
      * @brief applyGraphics Metodo virtuale che imposta le caratteristiche grafiche

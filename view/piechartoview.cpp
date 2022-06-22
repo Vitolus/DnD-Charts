@@ -2,8 +2,8 @@
 
 PieChartOView::PieChartOView(QSize s, View* parent) : PieChartView(s, parent){}
 
-void PieChartOView::insertSlice(const QString& slice, uint occorrenze){
-    series->append(slice + tr(" : ") + QString::number(occorrenze), occorrenze);
+void PieChartOView::insertRazza(const QString& razza, uint occorrenze){
+    series->append(razza + tr(" : ") + QString::number(occorrenze), occorrenze);
 }
 
 void PieChartOView::applyGraphics(){

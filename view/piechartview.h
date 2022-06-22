@@ -29,11 +29,11 @@ public:
 
     /**
      * @brief insertSlice Metodo che serve ad inserire
-     * una nuova slice (razza o classe) nel grafico a torta
-     * @param slice slice da aggiungere
+     * una nuova razza nel grafico a torta
+     * @param razza razza da aggiungere
      * @param occorrenze occorrenze della slice
      */
-    virtual void insertSlice(const QString&, uint);
+    virtual void insertRazza(const QString&, uint);
 
     /**
      * @brief applyGraphics Metodo virtuale che imposta le caratteristiche grafiche

@@ -33,11 +33,6 @@ public:
      */
     BarChartModel* getModel() const override;
 
-    /**
-     * @brief showView Metodo overriding mostra la view
-     */
-    void showView() const override;
-
 public slots:
     /**
      * @brief onViewClosed Metodo virtuale che distrugge l'oggetto
