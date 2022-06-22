@@ -19,6 +19,7 @@ SOURCES += \
     ctrl/ctrl.cpp \
     ctrl/jsonfilepicker.cpp \
     ctrl/piechartctrl.cpp \
+    ctrl/scatterchartctrl.cpp \
     main.cpp \
     mainwindow.cpp \
     model/adminmodel.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     ctrl/ctrl.h \
     ctrl/jsonfilepicker.h \
     ctrl/piechartctrl.h \
+    ctrl/scatterchartctrl.h \
     mainwindow.h \
     model/adminmodel.h \
     model/barchartmodel.h \

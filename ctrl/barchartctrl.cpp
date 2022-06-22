@@ -1,6 +1,6 @@
 #include "barchartctrl.h"
 
-BarChartCtrl::BarChartCtrl(BarChartView *v, BarChartModel *m, Ctrl *parent) :
+BarChartCtrl::BarChartCtrl(BarChartView* v, BarChartModel* m, Ctrl* parent) :
     Ctrl(v, m, parent){
 
     for(QMap<QString, uint>::const_iterator it= getModel()->getLivelliMedi().cbegin();
