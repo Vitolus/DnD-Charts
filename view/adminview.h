@@ -36,8 +36,8 @@ private:
     QPushButton* newB;
     QPushButton* saveB;
     QPushButton* saveAsB;
-    QPushButton* pieChartRB;
-    QPushButton* pieChartCB;
+    QPushButton* pieChartB;
+    QPushButton* pieChartOB;
     QPushButton* scatterChartB;
     QPushButton* barChartB;
 
@@ -194,22 +194,22 @@ signals:
 
     //SIGNAL catturati da un Controller, servono per aggiornare il Model con la modifica di razzeTable
     void razzeTableAdded(QString);
-    void razzeTableMaterialeMod(uint,QString);
+    void razzeTableRazzaMod(uint,QString);
     void razzeTableRemoved(uint);
 
     //SIGNAL catturati da un Controller, servono per aggiornare il Model con la modifica di classiTable
     void classiTableAdded(QString);
-    void classiTableMaterialeMod(uint,QString);
+    void classiTableClasseMod(uint,QString);
     void classiTableRemoved(uint);
 
     //SIGNAL catturati dalla View, servono per aggiornare i QComboBox con la modifica del campo dato Razza della recordTable
     void razzeTableAddedChecked(QString);
-    void razzeTableMaterialeModChecked(uint,QString);
+    void razzeTableRazzaModChecked(uint,QString);
     void razzeTableRemovedChecked(uint);
 
     //SIGNAL catturati dalla View, servono per aggiornare i QComboBox con la modifica del campo dato Classe della recordTable
     void classiTableAddedChecked(QString);
-    void classiTableMaterialeModChecked(uint,QString);
+    void classiTableClasseModChecked(uint,QString);
     void classiTableRemovedChecked(uint);
 
     //SIGNAL catturati da un Controller, servono per eseguire delle azioni

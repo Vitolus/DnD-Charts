@@ -16,13 +16,13 @@ AdminView::AdminView(const QSize& s,View* parent) :
     mainLayout->addWidget(homeB,0, 4, 1, 1, Qt::AlignRight);
 
     //Pulsanti Grafici
-    pieChartRB= new QPushButton("Razze scelte %", this);
-    mainLayout->addWidget(pieChartRB, 2, 0, 1, 1, Qt::AlignCenter);
-    pieChartCB= new QPushButton("Classi scelte %", this);
-    mainLayout->addWidget(pieChartCB, 2, 1, 1, 1, Qt::AlignCenter);
-    scatterChartB = new QPushButton("Allineamento classi", this);
+    pieChartB= new QPushButton("Razze scelte %", this);
+    mainLayout->addWidget(pieChartB, 2, 0, 1, 1, Qt::AlignCenter);
+    pieChartOB= new QPushButton("Razze scelte occorrenze", this);
+    mainLayout->addWidget(pieChartOB, 2, 1, 1, 1, Qt::AlignCenter);
+    scatterChartB = new QPushButton("Allineamento medio classi", this);
     mainLayout->addWidget(scatterChartB, 2, 2, 1, 1, Qt::AlignCenter);
-    barChartB= new QPushButton("Livello classi", this);
+    barChartB= new QPushButton("Livello medio classi", this);
     mainLayout->addWidget(barChartB, 2, 3, 1, 1, Qt::AlignCenter);
 
     setLayout(mainLayout);
@@ -65,7 +65,7 @@ void AdminView::createClassiTable(const QStringList& headers) const{
 
 void AdminView::createAddRowRecordTable(uint row, const QStringList& razzeList,
                                         const QStringList& classiList, const QStringList& allineamentiList){
-    //Inserismo una nuova riga per fare spazio
+    //Inserisco una nuova riga per fare spazio
     recordTable->insertRow(row);
 
     QComboBox* razzeW= new QComboBox(this);
@@ -85,7 +85,7 @@ void AdminView::createAddRowRecordTable(uint row, const QStringList& razzeList,
     connect(this, &AdminView::razzeTableRemovedChecked, razzeW, [razzeW](uint i){
         razzeW->removeItem(i);
     });
-    connect(this, &AdminView::razzeTableMaterialeModChecked, razzeW, [razzeW](uint i, const QString& m){
+    connect(this, &AdminView::razzeTableRazzaModChecked, razzeW, [razzeW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, andrà poi riselezionato
         bool iSelected= (razzeW->currentIndex() == (int)i);
         razzeW->removeItem(i);
@@ -100,7 +100,7 @@ void AdminView::createAddRowRecordTable(uint row, const QStringList& razzeList,
     connect(this, &AdminView::classiTableRemovedChecked, classiW, [classiW](uint i){
         classiW->removeItem(i);
     });
-    connect(this, &AdminView::classiTableMaterialeModChecked, classiW, [classiW](uint i, const QString& m){
+    connect(this, &AdminView::classiTableClasseModChecked, classiW, [classiW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, andrà poi riselezionato
         bool iSelected= (classiW->currentIndex() == (int)i);
         classiW->removeItem(i);
@@ -173,21 +173,6 @@ void AdminView::addItemRecordTable(uint row, const Record& r, const QStringList&
     if(index != -1) razzeW->setCurrentIndex(index);
     //Imposto il widget sulla cella
     recordTable->setCellWidget(row, 0, razzeW);
-
-    //classiTable con la combo selectg box
-    QComboBox* classiW= new QComboBox(this);
-    classiW->addItems(classiList);
-    index= classiW->findText(r.getClasse());
-    if(index != -1) classiW->setCurrentIndex(index);
-    recordTable->setCellWidget(row, 1, classiW);
-
-    //allineamentoTable con la combo selectg box
-    QComboBox* allineamentiW= new QComboBox(this);
-    allineamentiW->addItems(allineamentiList);
-    index= allineamentiW->findText(r.getAllineamento());
-    if(index != -1) allineamentiW->setCurrentIndex(index);
-    recordTable->setCellWidget(row, 2, allineamentiW);
-
     //Aggiornamento della lista di razze
     connect(this, &AdminView::razzeTableAddedChecked, razzeW, [razzeW](const QString& m){
         razzeW->addItem(m);
@@ -195,19 +180,24 @@ void AdminView::addItemRecordTable(uint row, const Record& r, const QStringList&
     connect(this, &AdminView::razzeTableRemovedChecked, razzeW, [razzeW](uint i){
         razzeW->removeItem(i);
     });
-    connect(this,&AdminView::razzeTableMaterialeModChecked, razzeW, [razzeW](uint i, const QString& m){
+    connect(this,&AdminView::razzeTableRazzaModChecked, razzeW, [razzeW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, sarà poi riselezionato
         bool iSelected= (razzeW->currentIndex() == (int)i);
         razzeW->removeItem(i);
         razzeW->insertItem(i, m);
         if(iSelected) razzeW->setCurrentIndex(i);
     });
-
     connect(razzeW, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [this, razzeW](){
         uint row= recordTable->indexAt(razzeW->pos()).row();
         emit recordTableRazzaMod(row, razzeW->currentText());
     });
 
+    //classiTable con la combo selectg box
+    QComboBox* classiW= new QComboBox(this);
+    classiW->addItems(classiList);
+    index= classiW->findText(r.getClasse());
+    if(index != -1) classiW->setCurrentIndex(index);
+    recordTable->setCellWidget(row, 1, classiW);
     //Aggiornamento della lista di classi
     connect(this, &AdminView::classiTableAddedChecked, classiW, [classiW](const QString& m){
         classiW->addItem(m);
@@ -215,17 +205,27 @@ void AdminView::addItemRecordTable(uint row, const Record& r, const QStringList&
     connect(this, &AdminView::classiTableRemovedChecked, classiW, [classiW](uint i){
         classiW->removeItem(i);
     });
-    connect(this,&AdminView::classiTableMaterialeModChecked, classiW, [classiW](uint i, const QString& m){
+    connect(this,&AdminView::classiTableClasseModChecked, classiW, [classiW](uint i, const QString& m){
         //verifico se l'elemento attualmente selezionato è quello da modificare, sarà poi riselezionato
         bool iSelected= (classiW->currentIndex() == (int)i);
         classiW->removeItem(i);
         classiW->insertItem(i, m);
         if(iSelected) classiW->setCurrentIndex(i);
     });
-
     connect(classiW, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [this, classiW](){
         uint row= recordTable->indexAt(classiW->pos()).row();
         emit recordTableClasseMod(row, classiW->currentText());
+    });
+
+    //allineamentoTable con la combo selectg box
+    QComboBox* allineamentiW= new QComboBox(this);
+    allineamentiW->addItems(allineamentiList);
+    index= allineamentiW->findText(r.getAllineamento());
+    if(index != -1) allineamentiW->setCurrentIndex(index);
+    recordTable->setCellWidget(row, 2, allineamentiW);
+    connect(allineamentiW, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, [this, allineamentiW](){
+        uint row= recordTable->indexAt(allineamentiW->pos()).row();
+        emit recordTableClasseMod(row, allineamentiW->currentText());
     });
 
     //livello Widget
@@ -233,17 +233,15 @@ void AdminView::addItemRecordTable(uint row, const Record& r, const QStringList&
     livelloW->setRange(1, 20);
     livelloW->setValue(r.getLivello());
     recordTable->setCellWidget(row, 3, livelloW);
-
     connect(livelloW, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, [this, livelloW](int value){
         uint row= recordTable->indexAt(livelloW->pos()).row();
-        emit recordTableLivelloMod(row,value);
+        emit recordTableLivelloMod(row, value);
         //livelloW->value() == value
     });
 
     //Delete Button Widget
     QPushButton* deleteW= new QPushButton("-", this);
     recordTable->setCellWidget(row, 4, deleteW);//Widget
-
     //Connessione al pulsante delete per eliminare la riga e aggiornare il modello di dati con l'eliminazione
     connect(deleteW, &QPushButton::clicked, this, [this, deleteW](){
         uint row = recordTable->indexAt(deleteW->pos()).row();
@@ -262,14 +260,13 @@ void AdminView::addItemRazzeTable(uint row ,const QString& m){
 
     connect(razzeW, &QTextEdit::textChanged, [this, razzeW]() {
         uint row= razzeTable->indexAt(razzeW->pos()).row();
-        emit razzeTableMaterialeMod(row, razzeW->toPlainText());
+        emit razzeTableRazzaMod(row, razzeW->toPlainText());
     });
 
     //Delete Button Widget
     QPushButton* deleteW= new QPushButton("-", this);
     //deleteW->setObjectName(QString::number(row));
     razzeTable->setCellWidget(row, 1, deleteW);//Widget
-
     connect(deleteW, &QPushButton::clicked, [this, deleteW]() {
         unsigned int row= razzeTable->indexAt(deleteW->pos()).row();
         emit razzeTableRemoved(row);
@@ -287,17 +284,15 @@ void AdminView::addItemClassiTable(uint row, const QString& m){
     QTextEdit* classiW= new QTextEdit(this);
     classiW->setText(m);
     classiTable->setCellWidget(row, 0, classiW);
-
     connect(classiW, &QTextEdit::textChanged, [this, classiW]() {
         unsigned int row= classiTable->indexAt(classiW->pos()).row();
-        emit classiTableMaterialeMod(row, classiW->toPlainText());
+        emit classiTableClasseMod(row, classiW->toPlainText());
     });
 
     //Delete Button Widget
     QPushButton* deleteW= new QPushButton("-", this);
     //deleteW->setObjectName(QString::number(row));
     classiTable->setCellWidget(row, 1, deleteW);//Widget
-
     connect(deleteW, &QPushButton::clicked, [this, deleteW]() {
         unsigned int row= classiTable->indexAt(deleteW->pos()).row();
         emit classiTableRemoved(row);
@@ -311,12 +306,12 @@ void AdminView::addItemClassiTable(uint row, const QString& m){
 void AdminView::modifyItemRazzeTable(uint row, const QString& m){
     QTextEdit* textEdit= static_cast<QTextEdit*>(razzeTable->cellWidget(row, 0));
     textEdit->setText(m);
-    emit razzeTableMaterialeModChecked(row, m);
+    emit razzeTableRazzaModChecked(row, m);
 }
 void AdminView::modifyItemClassiTable(uint row, const QString &m){
     QTextEdit* textEdit= static_cast<QTextEdit*>(classiTable->cellWidget(row, 0));
     textEdit->setText(m);
-    emit classiTableMaterialeModChecked(row, m);
+    emit classiTableClasseModChecked(row, m);
 }
 
 void AdminView::removeItemRazzeTable(uint row){
@@ -338,8 +333,8 @@ void AdminView::connectViewSignals() const{
     connect(saveAsB, SIGNAL(clicked()), this, SIGNAL(saveAsBPressed()));
     connect(homeB, SIGNAL(clicked()), this, SIGNAL(homeBPressed()));
 
-    connect(pieChartRB, &QPushButton::clicked, this, [this](){emit pieChartBPressed(false);});
-    connect(pieChartCB, &QPushButton::clicked, this, [this](){emit pieChartBPressed(true);});
+    connect(pieChartB, &QPushButton::clicked, this, [this](){emit pieChartBPressed(false);});
+    connect(pieChartOB, &QPushButton::clicked, this, [this](){emit pieChartBPressed(true);});
     connect(scatterChartB, SIGNAL(clicked()), this, SIGNAL(scatterChartBPressed()));
     connect(barChartB, &QPushButton::clicked, this, [this](){emit barChartBPressed();});
 }

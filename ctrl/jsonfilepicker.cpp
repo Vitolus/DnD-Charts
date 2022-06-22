@@ -4,7 +4,7 @@ QString JsonFilePicker::selectJsonFileDialog(){
     QFileDialog dialog;
     QString fileName;
     dialog.setFileMode(QFileDialog::ExistingFile);
-    dialog.setNameFilter("JSON File (*.json)");
+    dialog.setNameFilter("Json File (*.json)");
     if (dialog.exec()) fileName= dialog.selectedFiles().at(0);
     return fileName;
 }
