@@ -16,12 +16,15 @@ AdminCtrl::AdminCtrl(AdminView* v, AdminModel* m, Ctrl* parent) : Ctrl(v, m, par
     for (const QString& r : *getModel()->getRazzeList()) {
         getView()->addItemRazzeTable(id++, r);
     }
+
     getView()->createClassiTable({"CLASSI",""});
     getView()->createAddRowClassiTable(0);
     id= 0;
     for (const QString& r : *getModel()->getClassiList()) {
         getView()->addItemClassiTable(id++, r);
     }
+
+///TODO aggiungere spaziatura
 
     //Creao la Record Table
     getView()->createRecordTable({ "Razza", "Classe", "Allineamento", "Livello", ""});
@@ -70,7 +73,7 @@ void AdminCtrl::connectViewCtrlSignalsSlots() const{
     connect(view, SIGNAL(homeBPressed()), this, SLOT(onHomeBPressed()));
 
     connect(view, SIGNAL(pieChartBPressed(bool)), this, SLOT(onPieChartBPressed(bool)));
-    connect(view, SIGNAL(lineChartBPressed()),this,SLOT(onLineChartBPressed()));
+    connect(view, SIGNAL(scatterChartBPressed()),this,SLOT(onScatterChartBPressed()));
     connect(view, SIGNAL(barChartBPressed()), this, SLOT(onBarChartBPressed()));
 }
 
@@ -259,7 +262,7 @@ void AdminCtrl::onPieChartBPressed(bool occ) const{
 
 void AdminCtrl::onScatterChartBPressed() const{
     if(getModel()->getRecordList().size() == 0){
-        view->showWarningDialog("Attenzione","Inserire dei dati prima");
+        view->showWarningDialog("Attenzione", "Inserire dei dati prima");
         return;
     }
     ScatterChartView* scView= new ScatterChartView(QSize(800, 700), view);

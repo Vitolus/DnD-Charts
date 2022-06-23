@@ -5,20 +5,13 @@
 #include "ctrl/barchartctrl.h"
 #include "ctrl/scatterchartctrl.h"
 #include "view/adminview.h"
-//#include "view/piechartview.h"
 #include "view/piechartoview.h"
-//#include "view/scatterchartview.h"
-//#include "view/barchartview.h"
-//#include "model/barchartmodel.h"
-//#include "model/piechartmodel.h"
-//#include "model/scatterchartmodel.h"
 
 /**
  * @brief The AdminCtrl class
  * AdminCtrl classe derivata da Ctrl ossia un Controller specializzato della schermata Admin della applicazione
  */
-class AdminCtrl : public Ctrl
-{
+class AdminCtrl : public Ctrl{
     Q_OBJECT
 private:
     /**

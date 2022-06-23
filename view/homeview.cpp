@@ -64,7 +64,7 @@ QLayout* HomeView::createDescriptionLayout(const QString& description, const QSt
 
 void HomeView::connectViewSignals() const{
     connect(newButton, SIGNAL(clicked()), this, SIGNAL(newDungeon()));
-    connect(openButton, SIGNAL(clicked()), this, SIGNAL(openDugeon()));
+    connect(openButton, SIGNAL(clicked()), this, SIGNAL(openDungeon()));
 }
 
 

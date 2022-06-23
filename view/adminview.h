@@ -218,7 +218,7 @@ signals:
     void saveAsBPressed();
     void homeBPressed();
     void pieChartBPressed(bool) const;
-    void scatterChartBPressed();
+    void scatterChartBPressed() const;
     void barChartBPressed() const;
 
 public slots:

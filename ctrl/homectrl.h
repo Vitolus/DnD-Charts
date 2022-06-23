@@ -37,8 +37,7 @@ public:
      * @return VIEW del Controller interpretata come HomeView
      */
     HomeView* getView() const override;
-
-    Model* getModel() const override{return nullptr;}
+    Model* getModel() const override;
 
 signals:
 
@@ -48,7 +47,7 @@ public slots:
      */
     void onNewDungeon() const;
     /**
-     * @brief onOpenProject SLOT eseguito alla ricezione di SEGNALI di apertura di un dungeon esistente
+     * @brief onOpenDungeon SLOT eseguito alla ricezione di SEGNALI di apertura di un dungeon esistente
      */
     void onOpenDungeon() const;
     /**

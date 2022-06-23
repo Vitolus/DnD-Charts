@@ -59,7 +59,7 @@ public:
 
 signals:
     void newDungeon();
-    void openDugeon();
+    void openDungeon();
 
 public slots:
 

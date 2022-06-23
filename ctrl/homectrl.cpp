@@ -9,6 +9,8 @@ HomeView* HomeCtrl::getView() const{
     return static_cast<HomeView*>(view);
 }
 
+Model *HomeCtrl::getModel() const{return nullptr;}
+
 void HomeCtrl::connectViewCtrlSignalsSlots() const{
     connect(view, SIGNAL(newDungeon()), this, SLOT(onNewDungeon()));
     connect(view, SIGNAL(openDungeon()), this, SLOT(onOpenDungeon()));
