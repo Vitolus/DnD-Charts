@@ -18,6 +18,7 @@ SOURCES += \
     ctrl/adminctrl.cpp \
     ctrl/barchartctrl.cpp \
     ctrl/ctrl.cpp \
+    ctrl/homectrl.cpp \
     ctrl/jsonfilepicker.cpp \
     ctrl/piechartctrl.cpp \
     ctrl/scatterchartctrl.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     ctrl/adminctrl.h \
     ctrl/barchartctrl.h \
     ctrl/ctrl.h \
+    ctrl/homectrl.h \
     ctrl/jsonfilepicker.h \
     ctrl/piechartctrl.h \
     ctrl/scatterchartctrl.h \
