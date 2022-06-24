@@ -39,8 +39,7 @@ QLayout* HomeView::createButtonsLayout(){
 QLayout* HomeView::createDescriptionLayout(const QString& description){
     QVBoxLayout* descrLayout= new QVBoxLayout;
     QLabel* desc= new QLabel(description, this);
-    QFont f("Calibri", 9);
-    desc->setFont(f);
+    desc->setFont({"Roboto", 10});
     descrLayout->addWidget(desc, Qt::AlignJustify);
 
     QHBoxLayout* groupLayout= new QHBoxLayout;
@@ -48,6 +47,7 @@ QLayout* HomeView::createDescriptionLayout(const QString& description){
     groupLayout->setSpacing(25);
     groupLayout->setContentsMargins(12, 50, 25, 50);
     QGroupBox* group= new QGroupBox("Descrizione Programma", this);
+    group->setFont({"Roboto", 11});
     group->setLayout(descrLayout);
     groupLayout->addWidget(group);
     return groupLayout;
@@ -57,7 +57,6 @@ void HomeView::connectViewSignals() const{
     connect(newButton, SIGNAL(clicked()), this, SIGNAL(newDungeon()));
     connect(openButton, SIGNAL(clicked()), this, SIGNAL(openDungeon()));
 }
-
 
 void HomeView::closeEvent(QCloseEvent* event){
     if(!event->spontaneous()) return;
