@@ -4,13 +4,16 @@ void ScatterChartView::connectViewSignals() const{}
 
 ScatterChartView::ScatterChartView(const QSize &size, View *parent) :
     View(size, parent), chart(new QChart()){
+
     QHBoxLayout* mainLayout= new QHBoxLayout;
     chart->setTitle("Allineamento medio per classe");
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
+    chart->legend()->setMarkerShape(QLegend::MarkerShapeFromSeries);
     chart->setTheme(QChart::ChartThemeDark);
     chart->setAnimationOptions(QChart::AllAnimations);
     chart->setAnimationDuration(1500);
+    chart->setDropShadowEnabled(false);
 
     QChartView* chartView= new QChartView(chart, this);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -22,22 +25,27 @@ ScatterChartView::ScatterChartView(const QSize &size, View *parent) :
 }
 
 void ScatterChartView::insertAllineamento(const QString &classe, const std::pair<uint, uint> allineamento){
-    QScatterSeries* scatter= new QScatterSeries;
-    scatter->setName(classe);
-    scatter->setMarkerShape(QScatterSeries::MarkerShapeCircle);
-    scatter->setMarkerSize(15.0);
-    scatter->append(allineamento.first, allineamento.second);
-    allineamentiSerie.push_back(scatter);
+    allineamentiSerie.push_back(new QScatterSeries());
+    allineamentiSerie.back()->setName(classe);
+    allineamentiSerie.back()->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+    allineamentiSerie.back()->setMarkerSize(15.0);
+    allineamentiSerie.back()->append(allineamento.first, allineamento.second);
+
 }
 
 void ScatterChartView::applyChartSeries(){
-    chart->removeAllSeries();
+    QValueAxis* axisX= new QValueAxis, * axisY= new QValueAxis;
+    axisX->setTitleText("<-legale|caotico->");
+    axisX->setRange(-5, 5);
+    axisX->setMinorGridLineVisible(true);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    axisY->setTitleText("<-malvagio|buono->");
+    axisY->setRange(-5, 5);
+    chart->addAxis(axisY, Qt::AlignLeft);
+
     for(auto a : allineamentiSerie){
         chart->addSeries(a);
-    }
-    chart->createDefaultAxes();
-    if(chart->axisX() && chart->axisY()){
-       chart->axisX()->setTitleText("<- Legale | Caotico ->");
-       chart->axisY()->setTitleText("<- Malvagio | Buono ->");
+        a->attachAxis(axisX);
+        a->attachAxis(axisY);
     }
 }

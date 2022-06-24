@@ -33,7 +33,6 @@ public:
      * @brief getLivelloMax metodo getter
      * @return livello massimo all'interno del modello
      */
-    uint getLivelloMax() const;
 };
 
 #endif // BARCHARTMODEL_H

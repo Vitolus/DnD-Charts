@@ -1,2 +1,0 @@
-Fix disposizione barChart
-Fix disposizione scatterChart

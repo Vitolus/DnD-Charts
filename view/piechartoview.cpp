@@ -14,4 +14,5 @@ void PieChartOView::applyGraphics(){
     }
     chart->setTitle("Occorrenze di scelta");
     series->setLabelsPosition(QPieSlice::LabelInsideHorizontal);
+    chart->addSeries(series);
 }

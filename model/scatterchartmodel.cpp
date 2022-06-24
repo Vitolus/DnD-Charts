@@ -1,33 +1,18 @@
 #include "scatterchartmodel.h"
 
 ScatterChartModel::ScatterChartModel(AdminModel* m){
-    //inizializzo allineamentiOcc a 0
-    QMap<QString,QMap<QString, uint>> allineamentiOcc;
+    //inseriso le coordinate dell'allineamento per ogni classe
     for(const QString& classe : *m->getClassiList()){
-        for(const QString& allineamento : *m->getAllineamentiList()){
-            allineamentiOcc.insert(classe, QMap<QString, uint>{{allineamento, 0}});
-        }
-    }
-    //aggiorna i dati in allineamentiOcc
-    for(const QString& classe : *m->getClassiList()){
-        for(Record* r : m->getRecordList()){
+        float legge= 0.0, bonta= 0.0;
+        for(Record* r : m->getRecordList()){//assolutamente inefficiente
             if(r->getClasse() == classe){
-                allineamentiOcc[classe][r->getAllineamento()]+= 1;//modo brutto ma necessario
+                if(r->getAllineamento().contains("legale", Qt::CaseInsensitive)) legge++;
+                else if(r->getAllineamento().contains("caotico", Qt::CaseInsensitive)) legge--;
+                if(r->getAllineamento().contains("buono", Qt::CaseInsensitive)) bonta++;
+                else if(r->getAllineamento().contains("malvagio", Qt::CaseInsensitive)) bonta--;
             }
         }
-    }
-    //inseriso le coordinate dell'allineamento per ogni classe
-    for(QMap<QString,QMap<QString, uint>>::const_iterator it= allineamentiOcc.cbegin(); it != allineamentiOcc.cend(); it++){
-        uint legge= 0, bonta= 0;
-        QMap<QString, uint> all= it.value();
-        for (QMap<QString, uint>::const_iterator ait= all.cbegin(); ait != all.cend(); ait++){
-            if(ait.key().contains("legale")) legge+= ait.value();
-            else if(ait.key().contains("caotico")) legge-= ait.value();
-
-            if(ait.key().contains("buono")) bonta+= ait.value();
-            else if(ait.key().contains("malvagio")) bonta-= ait.value();
-        }
-        allinementiMedi.insert(it.key(),{legge, bonta});
+        allinementiMedi.insert(classe,{roundf(legge*100)/100, roundf(bonta*100)/100});
     }
 }
 

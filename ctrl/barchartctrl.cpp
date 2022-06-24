@@ -2,14 +2,11 @@
 
 BarChartCtrl::BarChartCtrl(BarChartView* v, BarChartModel* m, Ctrl* parent) :
     Ctrl(v, m, parent){
-
     for(QMap<QString, uint>::const_iterator it= getModel()->getLivelliMedi().cbegin();
         it != getModel()->getLivelliMedi().cend(); it++){
         getView()->insertSetClasse(it.key(), it.value());
     }
     getView()->applySetsOnChart();
-    getView()->applyAxis(getModel()->getClassiList(), getModel()->getLivelloMax());
-
 }
 
 BarChartView *BarChartCtrl::getView() const{

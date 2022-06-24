@@ -5,7 +5,6 @@ void PieChartView::connectViewSignals() const{}
 PieChartView::PieChartView(const QSize& size, View *parent) :
      View(size, parent), series(new QPieSeries()), chart(new QChart()){
     QHBoxLayout* mainLayout = new QHBoxLayout;
-    chart->addSeries(series);
     chart->legend()->setVisible(true);
     chart->legend()->setAlignment(Qt::AlignBottom);
     chart->setTheme(QChart::ChartThemeDark);
@@ -33,4 +32,5 @@ void PieChartView::applyGraphics(){
                         QString::number((slice->percentage()*100), 'f', 1) + " %");
     }
     chart->setTitle("Percentuale di scelta");
+    chart->addSeries(series);
 }

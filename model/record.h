@@ -7,7 +7,7 @@ class Record{
     QString razza;
     QString classe;
     QString allineamento;
-    unsigned int livello;
+    uint livello;
 public:
     /**
      * @brief Record Costruttore

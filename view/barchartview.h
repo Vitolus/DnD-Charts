@@ -19,9 +19,6 @@ private:
     QChart* chart;
     QBarSeries* series;
     QList<QBarSet*> listaSetClassi;
-    QScrollBar* chartScroll;
-    //Parametro che indica quante classi mostrare alla volta nel grafico
-    int maxVisClassi= 7;
     /**
      * @brief connectViewSignals Metodo virtuale che serve a collegare
      * i segnali dei singoli Widget ai segnali della View
@@ -45,20 +42,11 @@ public:
     void insertSetClasse(const QString&, uint);
 
     /**
-     * @brief applySetsOnChart Metodo che aggiunge i sets allla series
-     * successivemente applica la series al chart.
-     * in pratica mostra i dati al chart.
+     * @brief applySetsOnChart Metodo che aggiunge i sets alla series
+     * successivemente applica la series al chart e nomina gli assi
+     * @param listaClassi, lista delle classi da mostrare sul grafico
      */
     void applySetsOnChart();
-
-    /**
-     * @brief applyAxis Metodo che imposta i dettagli degli Assi
-     * impostandone la grandezza e la descrizione
-     * @param mesi lista dei meseA con la descrizione per l'asse X
-     * @param maxY massimo intero dei dati da rapresentare, appunto con la
-     * granzza massima del asse y
-     */
-    void applyAxis(const QStringList& mesi, const uint maxY);
 
 };
 

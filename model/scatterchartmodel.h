@@ -2,6 +2,7 @@
 #define SCATTERCHARTMODEL_H
 
 #include <QMap>
+#include <math.h>
 #include "model/model.h"
 #include "model/adminmodel.h"
 

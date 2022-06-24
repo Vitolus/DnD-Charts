@@ -1,8 +1,8 @@
 #include "adminmodel.h"
 
-QStringList const* AdminModel::allineamentiList= new QStringList({"legale,buono","legale,neutrale","legale,malvagio",
-                                                           "neutrale,buono","neutrale,neutrale","neutrale,malvagio",
-                                                           "caotico,buono","caotico,neutrale","caotico,malvagio"});
+QStringList const* AdminModel::allineamentiList= new QStringList({"legale buono", "legale neutrale", "legale malvagio",
+                                                           "neutrale buono", "neutrale neutrale", "neutrale malvagio",
+                                                           "caotico buono", "caotico neutrale", "caotico malvagio"});
 
 AdminModel::AdminModel(QJsonDocument* data, QString* path){
     razzeList= JsonFilePicker::getRazzeList(data);

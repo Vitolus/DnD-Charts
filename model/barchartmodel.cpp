@@ -19,4 +19,3 @@ BarChartModel::BarChartModel(AdminModel *m){
 
 QMap<QString, uint> BarChartModel::getLivelliMedi() const{return livelliMedi;}
 const QStringList& BarChartModel::getClassiList() const{return listaClassi;}
-uint BarChartModel::getLivelloMax() const{return livelloMax;}

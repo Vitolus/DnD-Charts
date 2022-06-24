@@ -33,7 +33,7 @@ private:
      * @param imgPath path della immagine da includere nel layout
      * @return layout contenente la parte della descrizione della applicazione
      */
-    QLayout* createDescriptionLayout(const QString&, const QString&);
+    QLayout* createDescriptionLayout(const QString&);
     /**
      * @brief connectViewSignals Metodo virtuale
      * Questo Metodo serve a connettere i SIGNAL degli elementi grafici della Homeview,

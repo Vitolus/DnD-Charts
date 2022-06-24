@@ -60,11 +60,11 @@ void AdminCtrl::connectViewCtrlSignalsSlots() const{
     //connessioni per la ModelTable
     connect(view, SIGNAL(razzeTableAdded(QString)), this, SLOT(onRazzeTableAdded(QString)));
     connect(view, SIGNAL(razzeTableRemoved(uint)), this, SLOT(onRazzeTableRemoved(uint)));
-    connect(view, SIGNAL(razzeTableMaterialeMod(uint, QString)), this, SLOT(onRazzeTableRazzaMod(uint, QString)));
+    connect(view, SIGNAL(razzeTableRazzaMod(uint, QString)), this, SLOT(onRazzeTableRazzaMod(uint, QString)));
 
     connect(view, SIGNAL(classiTableAdded(QString)), this, SLOT(onClassiTableAdded(QString)));
     connect(view, SIGNAL(classiTableRemoved(uint)), this, SLOT(onClassiTableRemoved(uint)));
-    connect(view, SIGNAL(classiTableMaterialeMod(uint, QString)), this, SLOT(onClassiTableClasseMod(uint, QString)));
+    connect(view, SIGNAL(classiTableClasseMod(uint, QString)), this, SLOT(onClassiTableClasseMod(uint, QString)));
 
     //connessioni per i pulsanti di interazione
     connect(view, SIGNAL(newBPressed()), this, SLOT(onNewBPressed()));
@@ -132,7 +132,7 @@ void AdminCtrl::onRazzeTableRazzaMod(uint row, const QString &r){
     uint counter= 0;
     for(const QString& rAdd : *getModel()->getRazzeList()){
         if(rAdd == r && counter != row){
-            //Duplicato trovato , modifico modello e materiale nella view con appeso '_'
+            //Duplicato trovato , modifico modello e razza nella view con appeso '_'
             getModel()->setRazza(row, r);
             getView()->modifyItemRazzeTable(row, r + "_");
             return;
@@ -151,7 +151,7 @@ void AdminCtrl::onClassiTableClasseMod(uint row, const QString &c){
     uint counter= 0;
     for(const QString& cAdd : *getModel()->getClassiList()){
         if(cAdd == c && counter != row){
-            //Duplicato trovato , modifico modello e materiale nella view con appeso '_'
+            //Duplicato trovato , modifico modello e classe nella view con appeso '_'
             getModel()->setClasse(row, c);
             getView()->modifyItemClassiTable(row, c + "_");
             return;

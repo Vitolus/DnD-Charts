@@ -6,17 +6,15 @@ HomeView::HomeView(const QSize& s, View* parent) : View(s, parent){
     mainLayout->setMargin(0);
     mainLayout->addLayout(createButtonsLayout());
     mainLayout->addLayout(createDescriptionLayout(tr(
-    "Dungeons & Data è un programma di statistica utile\n"
-    "a mostrare alcune preferenze dei giocatori di D&D.\n"
+    "Dungeons & Data è un programma di statistica utile a mostrare\n"
+    "alcune preferenze dei giocatori di D&D.\n"
     "Si tiene traccia di alcune informazioni di ogni personaggio:\n"
     "- Razza\n"
     "- Classe\n"
     "- Allineamento\n"
     "- Livello\n"
     "\n"
-    "Questo programma, offre dei grafici utili\n"
-    "ad esaminare queste informazioni\n"),
-    ":/dungeons.jpeg"));
+    "Questo programma, offre dei grafici utili ad esaminare informazioni\n")));
     setLayout(mainLayout);
     connectViewSignals();
 }
@@ -38,15 +36,8 @@ QLayout* HomeView::createButtonsLayout(){
     return buttonsLayout;
 }
 
-QLayout* HomeView::createDescriptionLayout(const QString& description, const QString& imgPath){
+QLayout* HomeView::createDescriptionLayout(const QString& description){
     QVBoxLayout* descrLayout= new QVBoxLayout;
-    QLabel* img= new QLabel(this);
-    QPixmap pic= QPixmap(imgPath);
-    pic= pic.scaledToHeight(300);
-    img->setPixmap(pic);
-    img->setFixedSize(300, 300);
-    descrLayout->addWidget(img, Qt::AlignHCenter);
-
     QLabel* desc= new QLabel(description, this);
     QFont f("Calibri", 9);
     desc->setFont(f);

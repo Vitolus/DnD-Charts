@@ -4,6 +4,7 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QScatterSeries>
 #include <QHBoxLayout>
+#include <QtCharts/QValueAxis>
 #include "view/view.h"
 
 QT_CHARTS_USE_NAMESPACE
