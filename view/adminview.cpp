@@ -315,7 +315,7 @@ void AdminView::removeItemClassiTable(uint row){
 }
 
 void AdminView::setViewTitle(const QString& title){
-    setWindowTitle(title);
+    setWindowTitle("Dungeon "+title);
 }
 
 void AdminView::connectViewSignals() const{
@@ -342,8 +342,3 @@ void AdminView::closeEvent(QCloseEvent* event){
         emit viewClosed();
     }
 }
-
-
-
-
-
