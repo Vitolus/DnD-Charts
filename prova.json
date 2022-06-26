@@ -1,0 +1,71 @@
+{
+    "classi": [
+        "guerriero",
+        "mago",
+        "ladro",
+        "stregone",
+        "druido",
+        "bardo",
+        "barbaro",
+        "chierico",
+        "ranger",
+        "paladino"
+    ],
+    "razze": [
+        "umano",
+        "elfo",
+        "nano",
+        "gnomo",
+        "orco"
+    ],
+    "records": [
+        {
+            "allineamento": "legale buono",
+            "classe": "guerriero",
+            "livello": 1,
+            "razza": "umano"
+        },
+        {
+            "allineamento": "neutrale buono",
+            "classe": "caotico buono",
+            "livello": 5,
+            "razza": "elfo"
+        },
+        {
+            "allineamento": "neutrale neutrale",
+            "classe": "caotico malvagio",
+            "livello": 10,
+            "razza": "gnomo"
+        },
+        {
+            "allineamento": "caotico neutrale",
+            "classe": "ladro",
+            "livello": 7,
+            "razza": "umano"
+        },
+        {
+            "allineamento": "legale buono",
+            "classe": "paladino",
+            "livello": 17,
+            "razza": "nano"
+        },
+        {
+            "allineamento": "legale malvagio",
+            "classe": "ranger",
+            "livello": 10,
+            "razza": "umano"
+        },
+        {
+            "allineamento": "caotico neutrale",
+            "classe": "guerriero",
+            "livello": 2,
+            "razza": "elfo"
+        },
+        {
+            "allineamento": "legale malvagio",
+            "classe": "mago",
+            "livello": 12,
+            "razza": "nano"
+        }
+    ]
+}
